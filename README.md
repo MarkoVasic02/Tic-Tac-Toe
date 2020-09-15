@@ -11,5 +11,5 @@ You can see that the result turned out to be fine.
  + **MAYBE** make a simple gui :)
  
 *Project has some kind of worth to me because, as I said, it helped me by teaching me to improvise, made me understand the game even more so I can finish the project easier.
-Can't wait for rest of the stuff to be implemented.
+Can't wait for rest of the stuff to be implemented.*
  
