@@ -1,14 +1,14 @@
+# I plan to reset the board on every move
+# I'll try that with system('clear')
 from os import system
-
-# ---- Global Variables ---- #
 
 # Game Board
 board = ["-", "-", "-", "-", "-", "-", "-", "-", "-", ]
 
-# if game is still going
+# Condition for later
 game_still_going = True
 
-# Who won? Is there a tie?
+# Who won
 winner = None
 
 # Whos turn is it?
@@ -17,6 +17,8 @@ current_player = 'X'
 
 # display board function
 def display_board():
+    # printing board array elements together with the lines
+    # which are going to represent the board
     print(board[0] + " | " + board[1] + " | " + board[2])
     print(board[3] + " | " + board[4] + " | " + board[5])
     print(board[6] + " | " + board[7] + " | " + board[8])
@@ -26,14 +28,18 @@ def display_board():
 def flip_player():
     global current_player
 
+    # if x plays
     if current_player == "X":
+        # make o play
         current_player = "O"
 
+    # if o plays
     elif current_player == "O":
+        # make x play
         current_player = "X"
 
 
-# Play a game of tic tac toe
+# Play a game
 def play_game():
 
     # display the board
@@ -54,39 +60,49 @@ def play_game():
 
     # When game ends
     if winner == "X" or winner == "O":
+        # print who won
         print(winner + " won.")
 
+    # If there is no winner
     elif winner == None:
+        # It's a tie
         print("Tie.")
 
 
 # handling turns
 def handle_turn(player):
     
-    if current_player == 'X':
-        num = 1
-    else:
-        num = 2
+    # If x is on the move, num var is 1
+    if current_player == 'X': num = 1
+    # else num bar is 2
+    else: num = 2
 
-    print("Player", num, "[", current_player, "] plays")
+    # Trazimo ulaz od korisnika
+    position = input("Player", num, "[", current_player, "] plays\nChoose a position from 1 to 9: ")
 
-    position = input("Choose a position from 1 to 9: ")
-
+    # Varijabla koju koristimo kasnije
+    # u proveravanju ispravnosti unosa
     valid = False
 
+    # dok god je unos los, trazimo input iznova
     while not valid:
-
+        
+        # u ovom bloku proverava se da li mesto postoji
         while position not in ["1", "2", "3", "4", "5", "6", "7", "8", "9"]:
             position = input("Invalid Input. Choose a position from 1 to 9: ")
 
+        # da bi unos uporedili sa nasom listom
+        # pretvaramo string iz unosa u ceo broj
+        # i zbog indeksa oduzimamo jedan
         position = int(position) - 1
 
+        # U ovom bloku proverava se da li je mesto slobodno
         if board[position] == "-":
             valid = True
         else:
             print("Already Taken. Try another one... ")
 
-
+    # kada je valid = true nastavljamo dalje
     board[position] = player
     display_board()
 
@@ -108,6 +124,8 @@ def check_for_win():
     # check diagonals
     diagonal_winner = check_diagonals()
 
+
+    ## assigning the winner to the winner variable
     if row_winner:
         winner = row_winner
 
@@ -124,6 +142,7 @@ def check_for_win():
 def check_rows():
     global game_still_going
 
+    # defining conditions to check the rows
     row_1 = board[0] == board[1] == board[2] != "-"
     row_2 = board[3] == board[4] == board[5] != "-"
     row_3 = board[6] == board[7] == board[8] != "-"
@@ -146,6 +165,7 @@ def check_rows():
 def check_columns():
     global game_still_going
 
+    # defining conditions to check the columns
     column_1 = board[0] == board[3] == board[6] != "-"
     column_2 = board[1] == board[4] == board[7] != "-"
     column_3 = board[2] == board[5] == board[8] != "-"
@@ -168,6 +188,7 @@ def check_columns():
 def check_diagonals():
     global game_still_going
 
+    # defining conditions to check the diagonals
     diagonal_1 = board[0] == board[4] == board[8] != "-"
     diagonal_2 = board[2] == board[4] == board[6] != "-"
 
@@ -190,6 +211,6 @@ def check_for_draw():
     if "-" not in board:
         game_still_going = False
 
-
+# pozivamo glavnu funkciju
 play_game()
 
