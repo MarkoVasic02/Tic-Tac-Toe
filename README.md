@@ -5,7 +5,7 @@ Main thing I learned by building this simple game is to improvise. I did improvi
 You can see that the result turned out to be fine.
 
 ### Things I want to do next with this project:
- + Add detailed comments
+ + ~~Add detailed comments~~
  + Make game board reappear after player makes a move so that the board stays in place all the time
  + Implement a one player game feature | make a bot to play against player
  + **MAYBE** make a simple gui :)
